@@ -30,10 +30,10 @@ contract TestTask {
 
         uint256 price = (sqrtPriceX96 / 2 ** 96) ** 2;
 
-        uint64 decimals_0 = 10 ** 18; //ETH
-        uint64 decimals_1 = 10 ** 6; //USDC
+        uint64 decimals0 = 10 ** 18; //ETH
+        uint64 decimals1 = 10 ** 6; //USDC
 
-        uint256 roundedPrice = price * (decimals_0 / decimals_1);
+        uint256 roundedPrice = price * (decimals0 / decimals1);
 
 
         uint256 k = (10 ** 4 - width) / (10 ** 4 + width);
@@ -42,8 +42,8 @@ contract TestTask {
         uint256 pA = (sqrt(D) - sqrt(k) * (amount1 - roundedPrice * amount0)) ** 2 / (4 * (x ** 2) * roundedPrice * k);
         uint256 pB = pA * k;
 
-        uint160 sqrtPAX96 = sqrt(pA * decimals_0) * 2 ** 96;
-        uint256 sqrtPBX96 = sqrt(pB * decimals_1) * 2 ** 96;
+        uint160 sqrtPAX96 = sqrt(pA * decimals0) * 2 ** 96;
+        uint160 sqrtPBX96 = sqrt(pB * decimals1) * 2 ** 96;
 
         int24 pATick = TickMath.getTickAtSqrtRatio(sqrtPAX96);
         int24 pBTick = TickMath.getTickAtSqrtRatio(sqrtPBX96);
